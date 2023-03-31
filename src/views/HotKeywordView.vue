@@ -48,6 +48,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
+import { getAPI } from "@/api/api";
 
 @Component({
 	components: {},
@@ -55,10 +56,7 @@ import axios from "axios";
 export default class HotKeywordView extends Vue {
 	keywordList: string[] = [];
 	mounted() {
-		axios
-			.get("http://localhost:3000/popular/keyword")
-			.then(this.popularHandler)
-			.catch();
+		getAPI(this, "/popular/keyword").then(this.popularHandler).catch();
 	}
 
 	popularHandler(res: any) {

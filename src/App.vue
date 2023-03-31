@@ -34,45 +34,42 @@ body {
 	#topContainer {
 		padding-top: 64px;
 	}
-}
 
-.appContainer {
-	position: relative;
-}
+	.appContainer {
+		position: relative;
 
-.appContainer > .appLeft {
-	width: 200px;
-	height: 100vh;
+		> .appLeft {
+			width: 200px;
+			height: 100vh;
 
-	position: absolute;
-}
+			position: absolute;
+		}
+		> .appRight {
+			height: 100vh;
 
-.appContainer > .appRight {
-	height: 100vh;
+			overflow: auto;
+		}
 
-	overflow: auto;
-}
+		> .leftInactive {
+			opacity: 0;
+			transform: translateX(-200px);
+			transition: all 0.5s ease;
+		}
+		> .leftActive {
+			opacity: 1;
+			transform: translateX(0px);
+			transition: all 0.5s ease;
+		}
 
-.appContainer > .leftInactive {
-	opacity: 0;
-	transform: translateX(-200px);
-	transition: all 0.5s ease;
-}
-
-.appContainer > .leftActive {
-	opacity: 1;
-	transform: translateX(0px);
-	transition: all 0.5s ease;
-}
-
-.appContainer > .rightInactive {
-	margin-left: 0px;
-	transition: all 0.5s ease;
-}
-
-.appContainer > .rightActive {
-	margin-left: 200px;
-	transition: all 0.5s ease;
+		> .rightInactive {
+			margin-left: 0px;
+			transition: all 0.5s ease;
+		}
+		> .rightActive {
+			margin-left: 200px;
+			transition: all 0.5s ease;
+		}
+	}
 }
 </style>
 

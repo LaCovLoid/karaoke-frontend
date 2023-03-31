@@ -53,6 +53,7 @@ import { Component, Vue } from "vue-property-decorator";
 import SearchBar from "@/components/SearchBar.vue";
 import axios from "axios";
 import { Song } from "@/structure/structure";
+import { getAPI } from "@/api/api";
 
 @Component({
 	components: { SearchBar },
@@ -67,8 +68,7 @@ export default class SongView extends Vue {
 
 	mounted() {
 		this.songId = Number(this.$route.params.id);
-		let detail = axios
-			.get("http://localhost:3000/song/" + this.songId)
+		getAPI(this, "/song/" + this.songId)
 			.then(this.detailHandler)
 			.catch(this.detailErrorHandler);
 	}
@@ -79,23 +79,11 @@ export default class SongView extends Vue {
 			this.isAxios = true;
 		} else return;
 
-		axios
-			.get(
-				"http://localhost:3000/lyrics/" +
-					this.info.title +
-					" " +
-					this.info.singer
-			)
+		getAPI(this, "/lyrics/" + this.info.title + " " + this.info.singer)
 			.then(this.lyricsHandler)
 			.catch(this.lyricsErrorHandler);
 
-		axios
-			.get(
-				"http://localhost:3000/youtube/" +
-					this.info.title +
-					" " +
-					this.info.singer
-			)
+		getAPI(this, "/youtube/" + this.info.title + " " + this.info.singer)
 			.then(this.youtubeHandler)
 			.catch();
 	}
@@ -116,8 +104,7 @@ export default class SongView extends Vue {
 	}
 
 	detailErrorHandler() {
-		axios
-			.get("http://localhost:3000/number/" + this.songId)
+		getAPI(this, "/number/" + this.songId)
 			.then(this.detailHandler)
 			.catch(this.isNotSongHandler);
 	}

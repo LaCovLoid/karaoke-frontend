@@ -13,11 +13,9 @@
 				}}</span>
 				<div v-if="checkIs(listIndex)">
 					<SongComponent
-						v-for="(componentItem, componentIndex) in songs[
-							listIndex
-						]"
+						v-for="(componentItem, componentIndex) in listItem"
 						:key="componentIndex"
-						:songInfo="songs[listIndex][componentIndex]"
+						:songInfo="componentItem"
 					/>
 				</div>
 				<div v-else>검색 결과가 없습니다.</div>
@@ -58,6 +56,7 @@ import SearchBar from "@/components/SearchBar.vue";
 import SongComponent from "@/components/SongComponent.vue";
 import axios from "axios";
 import { Song } from "@/structure/structure";
+import { getAPI } from "@/api/api";
 
 @Component({
 	components: { SearchBar, SongComponent },
@@ -94,15 +93,10 @@ export default class SearchedView extends Vue {
 			this.nat_type = "all";
 		}
 
-		axios
-			.get(
-				"http://localhost:3000/search/" +
-					this.keyword +
-					"?str_type=" +
-					this.str_type +
-					"&nat_type=" +
-					this.nat_type
-			)
+		getAPI(this, "/search/" + this.keyword, {
+			str_type: this.str_type,
+			nat_type: this.nat_type,
+		})
 			.then(this.searchHandler)
 			.catch();
 		//error 뭔가 하기

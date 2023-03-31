@@ -3,26 +3,26 @@
 		<span :class="$style.title">M E N U</span>
 		<div v-for="(item, index) in menusItem" :key="index">
 			<router-link
-				v-if="menusItem[index].opened == undefined"
-				:to="menusItem[index].path"
+				v-if="item.opened == undefined"
+				:to="item.path"
 				:class="$style.menus"
-				>{{ menusItem[index].name }}
+				>{{ item.name }}
 			</router-link>
 
 			<div v-else>
 				<div :class="$style.menus" @click="menuStateHandler(index)">
-					{{ menusItem[index].name }}
+					{{ item.name }}
 				</div>
 				<div
-					v-for="(subItem, subIndex) in menusItem[index].subMenu"
+					v-for="(subItem, subIndex) in item.subMenu"
 					:key="subIndex"
 				>
 					<router-link
-						v-if="menusItem[index].opened == true"
-						:to="menusItem[index].subMenu[subIndex].path"
+						v-if="item.opened == true"
+						:to="subItem.path"
 						:class="[$style.menus, $style.subMenus]"
 					>
-						{{ menusItem[index].subMenu[subIndex].name }}
+						{{ subItem.name }}
 					</router-link>
 				</div>
 			</div>

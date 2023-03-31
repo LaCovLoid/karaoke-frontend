@@ -5,7 +5,7 @@
 			<SongComponent
 				v-for="(item, index) in songs"
 				:key="index"
-				:songInfo="songs[index]"
+				:songInfo="item"
 			/>
 		</div>
 	</div>
@@ -34,6 +34,7 @@ import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 import { Song } from "@/structure/structure";
 import SongComponent from "@/components/SongComponent.vue";
+import { getAPI } from "@/api/api";
 
 @Component({
 	components: { SongComponent },
@@ -42,10 +43,7 @@ export default class NewSongsView extends Vue {
 	songs: Song[] = [];
 
 	mounted() {
-		let result = axios
-			.get("http://localhost:3000/new")
-			.then(this.newHandler)
-			.catch();
+		getAPI(this, "/new").then(this.newHandler).catch();
 	}
 
 	newHandler(res: any) {

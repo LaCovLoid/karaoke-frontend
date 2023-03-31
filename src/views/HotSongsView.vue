@@ -5,7 +5,7 @@
 			<PopularSongComponent
 				v-for="(item, index) in songs"
 				:key="index"
-				:songInfo="songs[index]"
+				:songInfo="item"
 			/>
 		</div>
 	</div>
@@ -35,6 +35,7 @@ import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 import { Song } from "@/structure/structure";
 import PopularSongComponent from "@/components/PopularSongComponent.vue";
+import { getAPI } from "@/api/api";
 
 @Component({
 	components: { PopularSongComponent },
@@ -43,10 +44,7 @@ export default class HotSongsView extends Vue {
 	songs: Song[] = [];
 
 	mounted() {
-		let result = axios
-			.get("http://localhost:3000/popular/song")
-			.then(this.popularHandler)
-			.catch();
+		getAPI(this, "/popular/song").then(this.popularHandler).catch();
 	}
 
 	popularHandler(res: any) {

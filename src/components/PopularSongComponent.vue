@@ -1,18 +1,10 @@
 <template>
 	<div :class="$style.index" v-once>
 		<router-link :to="getLink" :class="$style.container">
-			<span :class="[$style.rank, $style.songText]">{{
-				songInfo.rank
-			}}</span>
-			<span :class="[$style.number, $style.songText]">{{
-				songInfo.number
-			}}</span>
-			<span :class="[$style.title, $style.songText]">{{
-				songInfo.title
-			}}</span>
-			<span :class="[$style.singer, $style.songText]">{{
-				songInfo.singer
-			}}</span>
+			<span :class="$style.rank">{{ songInfo.rank }}</span>
+			<span :class="$style.number">{{ songInfo.number }}</span>
+			<span :class="$style.title">{{ songInfo.title }}</span>
+			<span :class="$style.singer">{{ songInfo.singer }}</span>
 		</router-link>
 	</div>
 </template>
@@ -21,6 +13,7 @@
 <style lang="scss" module>
 .index {
 	padding: 5px;
+	padding-left: 10px;
 	border-top: 1px solid #aaaaaa;
 
 	.container {

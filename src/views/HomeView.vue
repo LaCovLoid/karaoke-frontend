@@ -25,12 +25,9 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import SearchBar from "@/components/SearchBar.vue";
-import { getAPI } from "@/api/api";
 
 @Component({
 	components: { SearchBar },
 })
-export default class HomeView extends Vue {
-	songInfo: string = "it's test song Component";
-}
+export default class HomeView extends Vue {}
 </script>
