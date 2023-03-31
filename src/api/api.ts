@@ -17,7 +17,6 @@ export function getAPI(context: Vue, route: string, payload: any = {}): Promise<
             resolve(response);
         })
     })
-    //new URLSearchParams(obj).toString()
 
 
 }
